@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Australian Weather</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="../static/app.js" defer></script>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="weather-tool" aria-labelledby="page-title">
+        <div class="intro">
+          <p class="eyebrow">Current conditions</p>
+          <h1 id="page-title">Australian Weather</h1>
+        </div>
+
+        <form class="search" autocomplete="off">
+          <label for="city-input">City</label>
+          <div class="input-wrap">
+            <i data-lucide="search" aria-hidden="true"></i>
+            <input id="city-input" name="city" type="search" placeholder="Try Canberra, Sydney, Melbourne" aria-controls="suggestions" aria-expanded="false">
+          </div>
+          <ul id="suggestions" class="suggestions" role="listbox"></ul>
+        </form>
+
+        <section id="status" class="status">Enter an Australian city to see the latest weather.</section>
+
+        <section id="weather-card" class="weather-card hidden" aria-live="polite">
+          <div class="condition-icon">
+            <i id="weather-icon" data-lucide="cloud-sun" aria-hidden="true"></i>
+          </div>
+          <div class="weather-main">
+            <p id="place" class="place"></p>
+            <p id="temperature" class="temperature"></p>
+            <p id="condition" class="condition"></p>
+          </div>
+          <dl class="details">
+            <div>
+              <dt>Wind</dt>
+              <dd id="wind"></dd>
+            </div>
+            <div>
+              <dt>Updated</dt>
+              <dd id="updated"></dd>
+            </div>
+          </dl>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
