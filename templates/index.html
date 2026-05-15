@@ -14,6 +14,22 @@
         <div class="intro">
           <p class="eyebrow">Current conditions</p>
           <h1 id="page-title">Australian Weather</h1>
+          <div class="unit-toggles">
+            <div class="toggle-group">
+              <label>Temperature</label>
+              <div class="toggle-buttons">
+                <button id="unit-celsius" type="button" class="unit-btn active" data-unit="celsius">°C</button>
+                <button id="unit-fahrenheit" type="button" class="unit-btn" data-unit="fahrenheit">°F</button>
+              </div>
+            </div>
+            <div class="toggle-group">
+              <label>Wind Speed</label>
+              <div class="toggle-buttons">
+                <button id="unit-kmh" type="button" class="unit-btn active" data-unit="kmh">km/h</button>
+                <button id="unit-mph" type="button" class="unit-btn" data-unit="mph">mph</button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <form class="search" autocomplete="off">
@@ -24,6 +40,14 @@
           </div>
           <ul id="suggestions" class="suggestions" role="listbox"></ul>
         </form>
+
+        <section id="recent-searches" class="recent-searches hidden" aria-labelledby="recent-title">
+          <div class="recent-heading">
+            <p id="recent-title">Recent searches</p>
+            <button id="clear-recent" type="button" class="recent-clear">Clear</button>
+          </div>
+          <ul id="recent-list" class="recent-list"></ul>
+        </section>
 
         <section id="status" class="status">Enter an Australian city to see the latest weather.</section>
 
@@ -46,6 +70,11 @@
               <dd id="updated"></dd>
             </div>
           </dl>
+        </section>
+
+        <section id="forecast-section" class="forecast-section hidden" aria-labelledby="forecast-title">
+          <p id="forecast-title" class="forecast-title">7-Day Forecast</p>
+          <div id="forecast-list" class="forecast-list"></div>
         </section>
       </section>
     </main>

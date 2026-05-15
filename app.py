@@ -114,6 +114,7 @@ def weather():
                 "latitude": latitude,
                 "longitude": longitude,
                 "current": "temperature_2m,weather_code,wind_speed_10m",
+                "daily": "weather_code,temperature_2m_max,temperature_2m_min",
                 "timezone": "auto",
             },
         )
@@ -124,6 +125,24 @@ def weather():
     code = current.get("weather_code")
     conditions = weather_for_code(code)
 
+    daily = payload.get("daily") or {}
+    daily_times = daily.get("time", [])
+    daily_codes = daily.get("weather_code", [])
+    daily_max = daily.get("temperature_2m_max", [])
+    daily_min = daily.get("temperature_2m_min", [])
+
+    forecast = [
+        {
+            "date": daily_times[i],
+            "code": daily_codes[i],
+            "icon": weather_for_code(daily_codes[i])["icon"],
+            "condition": weather_for_code(daily_codes[i])["label"],
+            "max_temp": daily_max[i],
+            "min_temp": daily_min[i],
+        }
+        for i in range(min(7, len(daily_times)))
+    ]
+
     return jsonify(
         {
             "city": name,
@@ -133,6 +152,7 @@ def weather():
             "icon": conditions["icon"],
             "wind_speed": current.get("wind_speed_10m"),
             "time": current.get("time"),
+            "forecast": forecast,
         }
     )
 
